@@ -82,6 +82,15 @@ tau = (Days - DayofYr)*24; % [hrs]
 hrs = fix(tau); % [hours]
 min = fix((tau - hrs)*60); % [mininuts]
 sec = (tau - hrs - min/60)*3600; % [seconds] 
+%% Corection in Hrs, min and sec
+if round(sec) == 60
+    sec = 0;
+    min = min+1;
+end
+if round(min) == 60
+    min = 0;
+    hrs = hrs+1;
+end
 %% Output
 DateTimeVector = [Year Month Day hrs min round(sec)]; % [1x6], [Year Month Day Hours Min Second], corresponding to given Julian Date
 end
